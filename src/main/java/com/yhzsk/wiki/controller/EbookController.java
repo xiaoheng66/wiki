@@ -2,7 +2,9 @@ package com.yhzsk.wiki.controller;
 
 import com.yhzsk.wiki.domain.Demo;
 import com.yhzsk.wiki.domain.Ebook;
+import com.yhzsk.wiki.req.EbookReq;
 import com.yhzsk.wiki.resp.CommonResp;
+import com.yhzsk.wiki.resp.EbookResp;
 import com.yhzsk.wiki.service.Demoservice;
 import com.yhzsk.wiki.service.Ebookservice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,10 @@ public class EbookController {
 
 
     @GetMapping("/list")
-    public CommonResp list()
+    public CommonResp list(EbookReq req)
     {
-        CommonResp<List<Ebook>> resp = new CommonResp<>();
-        List<Ebook> list = ebookservice.list();
+        CommonResp<List<EbookResp>> resp = new CommonResp<>();
+        List<EbookResp> list = ebookservice.list(req);
         //success的值默认写了true  所以就不用再单独设置了
         resp.setContent(list);
         return resp;
